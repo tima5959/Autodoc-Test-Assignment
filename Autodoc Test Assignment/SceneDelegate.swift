@@ -7,6 +7,7 @@
 
 import UIKit
 import NewsFeed
+import NewsFeedDetailInfo
 import News
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -25,8 +26,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let newsFeedService = NewsFeedService()
         let viewModel = NewsFeedViewModel(newsFeedService: newsFeedService)
         let viewController = NewsFeedViewController(viewModel: viewModel)
+        let navigationController = UINavigationController(rootViewController: viewController)
 
-        window.rootViewController = UINavigationController(rootViewController: viewController)
+        viewController.onSelecteNews = { [weak navigationController] (url, title) in
+            let newsFeedDetailInfoViewModel = NewsFeedDetailInfoViewModel(url: url, title: title)
+            let newsFeedDetailInfo = NewsFeedDetailInfoViewController(viewModel: newsFeedDetailInfoViewModel)
+
+            navigationController?.pushViewController(newsFeedDetailInfo, animated: true)
+        }
+
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
     }
