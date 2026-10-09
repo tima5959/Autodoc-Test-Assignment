@@ -63,19 +63,19 @@ final public class NewsFeedViewController: UIViewController {
         baseView.newsCollectionView.refreshControl?
             .addTarget(self, action: #selector(refresh), for: .valueChanged)
 
-        configureState()
+        bind()
 
         viewModel.loadNews()
     }
 
     // MARK: - Private methods
 
-    private func configureState() {
+    private func bind() {
         viewModel.$items
             .sink { [weak self] items in
                 guard let self else { return }
 
-                self.applySnapshot()
+                self.applySnapshot(with: items)
             }
             .store(in: &cancellables)
 
@@ -93,8 +93,8 @@ final public class NewsFeedViewController: UIViewController {
         switch state {
         case .loaded:
             self.endRefreshIfNeeded()
-            self.applySnapshot()
         case .loading:
+            // TODO: Добавить UIActivityIndicator или скелетон
             break
         case .error(let error):
             // TODO: Придумать что делать в таком случае. За время теста не замечено ни одного случая
@@ -103,10 +103,10 @@ final public class NewsFeedViewController: UIViewController {
         }
     }
 
-    private func applySnapshot() {
+    private func applySnapshot(with items: [NewsFeedItem]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, NewsFeedItem>()
         snapshot.appendSections([0])
-        snapshot.appendItems(viewModel.items)
+        snapshot.appendItems(items)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
 
