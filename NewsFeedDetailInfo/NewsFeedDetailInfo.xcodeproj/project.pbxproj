@@ -6,8 +6,23 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		395D8F3C30790FCF0038FAB9 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395D8F3930790FCF0038FAB9 /* Common.framework */; };
+		395D8F3E30790FCF0038FAB9 /* DesignSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395D8F3A30790FCF0038FAB9 /* DesignSystem.framework */; };
+		395D8F4030790FCF0038FAB9 /* News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395D8F3B30790FCF0038FAB9 /* News.framework */; };
+		395D8F50307910440038FAB9 /* NewsFeedDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395D8F4F307910440038FAB9 /* NewsFeedDetailInfoViewController.swift */; };
+		395D8F523079104B0038FAB9 /* NewsFeedDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395D8F513079104B0038FAB9 /* NewsFeedDetailInfoView.swift */; };
+		395D8F54307910520038FAB9 /* NewsFeedDetailInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395D8F53307910520038FAB9 /* NewsFeedDetailInfoViewModel.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		395D8ECE3078575C0038FAB9 /* NewsFeedDetailInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NewsFeedDetailInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		395D8F3930790FCF0038FAB9 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		395D8F3A30790FCF0038FAB9 /* DesignSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DesignSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		395D8F3B30790FCF0038FAB9 /* News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		395D8F4F307910440038FAB9 /* NewsFeedDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedDetailInfoViewController.swift; sourceTree = "<group>"; };
+		395D8F513079104B0038FAB9 /* NewsFeedDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedDetailInfoView.swift; sourceTree = "<group>"; };
+		395D8F53307910520038FAB9 /* NewsFeedDetailInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedDetailInfoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -15,6 +30,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395D8F3C30790FCF0038FAB9 /* Common.framework in Frameworks */,
+				395D8F3E30790FCF0038FAB9 /* DesignSystem.framework in Frameworks */,
+				395D8F4030790FCF0038FAB9 /* News.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -24,7 +42,8 @@
 		395D8EC43078575C0038FAB9 = {
 			isa = PBXGroup;
 			children = (
-				395D8EDF307857660038FAB9 /* NewsFeedDetailInfo */,
+				395D8F4630790FFE0038FAB9 /* NewsFeedDetailInfo */,
+				395D8F3830790FCF0038FAB9 /* Frameworks */,
 				395D8ECF3078575C0038FAB9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -37,11 +56,48 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		395D8EDF307857660038FAB9 /* NewsFeedDetailInfo */ = {
+		395D8F3830790FCF0038FAB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				395D8F3930790FCF0038FAB9 /* Common.framework */,
+				395D8F3A30790FCF0038FAB9 /* DesignSystem.framework */,
+				395D8F3B30790FCF0038FAB9 /* News.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		395D8F4630790FFE0038FAB9 /* NewsFeedDetailInfo */ = {
+			isa = PBXGroup;
+			children = (
+				395D8F4C307910180038FAB9 /* Model */,
+				395D8F4D307910180038FAB9 /* ViewModel */,
+				395D8F4E307910180038FAB9 /* View */,
+			);
+			path = NewsFeedDetailInfo;
+			sourceTree = "<group>";
+		};
+		395D8F4C307910180038FAB9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = NewsFeedDetailInfo;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		395D8F4D307910180038FAB9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				395D8F53307910520038FAB9 /* NewsFeedDetailInfoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		395D8F4E307910180038FAB9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				395D8F4F307910440038FAB9 /* NewsFeedDetailInfoViewController.swift */,
+				395D8F513079104B0038FAB9 /* NewsFeedDetailInfoView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,6 +145,7 @@
 				TargetAttributes = {
 					395D8ECD3078575C0038FAB9 = {
 						CreatedOnToolsVersion = 26.0;
+						LastSwiftMigration = 2600;
 					};
 				};
 			};
@@ -126,6 +183,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395D8F523079104B0038FAB9 /* NewsFeedDetailInfoView.swift in Sources */,
+				395D8F54307910520038FAB9 /* NewsFeedDetailInfoViewModel.swift in Sources */,
+				395D8F50307910440038FAB9 /* NewsFeedDetailInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,9 +323,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z87S9B5RFW;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -273,6 +335,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -283,12 +346,18 @@
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = tim.fat.NewsFeedDetailInfo;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -299,9 +368,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z87S9B5RFW;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -309,6 +380,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,8 +391,13 @@
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = tim.fat.NewsFeedDetailInfo;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_INSTALL_MODULE = YES;
