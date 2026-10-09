@@ -73,7 +73,7 @@ final public class NewsFeedCell: UICollectionViewCell {
         stack.spacing = 8
         stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.backgroundColor = .tertiarySystemBackground
+        stack.backgroundColor = .secondarySystemBackground
         stack.layer.cornerRadius = 16
         stack.clipsToBounds = true
         stack.isLayoutMarginsRelativeArrangement = true
