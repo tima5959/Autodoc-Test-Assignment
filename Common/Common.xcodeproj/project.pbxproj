@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		395D8DC8307796BA0038FAB9 /* LoadImageActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395D8DC7307796BA0038FAB9 /* LoadImageActor.swift */; };
+		395D8F02307906540038FAB9 /* Date+asString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395D8F01307906540038FAB9 /* Date+asString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		395D8DB03077967C0038FAB9 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		395D8DC7307796BA0038FAB9 /* LoadImageActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImageActor.swift; sourceTree = "<group>"; };
+		395D8F01307906540038FAB9 /* Date+asString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+asString.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		395D8DC43077969B0038FAB9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				395D8F01307906540038FAB9 /* Date+asString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395D8F02307906540038FAB9 /* Date+asString.swift in Sources */,
 				395D8DC8307796BA0038FAB9 /* LoadImageActor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
