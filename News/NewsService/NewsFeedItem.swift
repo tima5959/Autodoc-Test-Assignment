@@ -38,4 +38,15 @@ public enum CategoryType: String, Decodable {
         let value = try decoder.singleValueContainer().decode(String.self)
         self = CategoryType(rawValue: value) ?? .unknown
     }
+
+    public var title: String {
+        switch self {
+        case .autoNews:
+            return "Автомобильные новости"
+        case .companyNews:
+            return "Новости компании"
+        case .unknown:
+            return "Новость"
+        }
+    }
 }
