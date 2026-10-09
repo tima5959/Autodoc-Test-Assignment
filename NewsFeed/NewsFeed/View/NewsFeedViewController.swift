@@ -8,10 +8,13 @@
 import Combine
 import UIKit
 import News
+import SafariServices
 
 final public class NewsFeedViewController: UIViewController {
 
     // MARK: - Public properties
+
+    public var onSelecteNews: ((URL, String) -> Void)?
 
     // MARK: - Private properties
 
@@ -47,12 +50,16 @@ final public class NewsFeedViewController: UIViewController {
 
     required init?(coder: NSCoder) { fatalError() }
 
+    // MARK: - Lifecycle
+
     public override func loadView() {
         view = baseView
     }
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = "Autodoc Test Assignment"
 
         baseView.newsCollectionView.delegate = self
         baseView.newsCollectionView.dataSource = dataSource
@@ -71,22 +78,24 @@ final public class NewsFeedViewController: UIViewController {
     // MARK: - Private methods
 
     private func bind() {
-        viewModel.$items
-            .sink { [weak self] items in
-                guard let self else { return }
+        let cancellablesArray = [
+            viewModel.$items
+                .sink { [weak self] items in
+                    guard let self else { return }
 
-                self.applySnapshot(with: items)
-            }
-            .store(in: &cancellables)
+                    self.applySnapshot(with: items)
+                },
 
-        viewModel.$state
-            .removeDuplicates()
-            .sink { [weak self] state in
-                guard let self else { return }
+            viewModel.$state
+                .removeDuplicates()
+                .sink { [weak self] state in
+                    guard let self else { return }
 
-                self.configureUI(state)
-            }
-            .store(in: &cancellables)
+                    self.configureUI(state)
+                }
+        ]
+
+        cancellables.formUnion(cancellablesArray)
     }
 
     private func configureUI(_ state: NewsFeedViewModel.State) {
@@ -117,7 +126,6 @@ final public class NewsFeedViewController: UIViewController {
     }
 
     @objc private func refresh() {
-        baseView.refreshControl.beginRefreshing()
         viewModel.refresh()
     }
 }
@@ -128,6 +136,14 @@ extension NewsFeedViewController: UICollectionViewDelegate {
         didSelectItemAt indexPath: IndexPath
     ) {
         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+
+        guard
+            let item = dataSource.itemIdentifier(for: indexPath),
+            let urlString = item.fullUrl,
+            let url = URL(string: urlString)
+        else { return }
+
+        onSelecteNews?(url, item.title)
     }
 
     public func collectionView(
