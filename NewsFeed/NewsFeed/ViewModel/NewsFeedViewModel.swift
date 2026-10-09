@@ -5,13 +5,14 @@
 //  Created by Timur  on 06.10.2026.
 //
 
+import Combine
 import Foundation
 import News
 
 @MainActor
 public final class NewsFeedViewModel {
 
-    public enum State {
+    public enum State: Equatable {
         case loading
         case loaded
         case error(String)
@@ -19,18 +20,17 @@ public final class NewsFeedViewModel {
 
     // MARK: - Public properties
 
-    public var onStateChange: ((State) -> Void)?
-    public private(set) var items: [NewsFeedItem] = []
+    @Published public private(set) var state: State = .loading
+    @Published public private(set) var items: [NewsFeedItem] = []
 
     // MARK: - Private properties
 
-    private var newsFeedService: NewsFeedServiceProtocol
+    private let newsFeedService: NewsFeedServiceProtocol
+    private let pageSize = 15
 
     private var page = 1
-    private var pageSize = 15
-
-    private var hasMore: Bool = true
-    private var isLoading: Bool = false
+    private var hasMore = true
+    private var loadTask: Task<Void, Never>?
 
     // MARK: - Init
 
@@ -41,57 +41,53 @@ public final class NewsFeedViewModel {
     // MARK: - Public methods
 
     public func refresh() {
-        Task {
-            await load(isRefreshing: true)
-        }
+        loadTask?.cancel()
+        loadTask = Task { await load(isRefreshing: true) }
     }
 
     public func loadNews() {
-        Task {
-            await load(isRefreshing: false)
-        }
+        guard loadTask == nil else { return }
+        loadTask = Task { await load(isRefreshing: false) }
     }
 
     public func loadNextNewsIfNeeded() {
-        Task {
-            await load(isRefreshing: false)
-        }
+        loadNews()
     }
 
     // MARK: - Private methods
 
     private func load(isRefreshing: Bool) async {
-        guard !isLoading else { return }
-        guard isRefreshing || hasMore else { return }
-
-        isLoading = true
-        defer { isLoading = false }
+        guard isRefreshing || hasMore else {
+            loadTask = nil
+            return
+        }
 
         if isRefreshing {
             page = 1
             hasMore = true
         }
 
-        onStateChange?(.loading)
+        state = .loading
 
         do {
             let response = try await newsFeedService.fetchNews(page: page, pageSize: pageSize)
+            guard !Task.isCancelled else { return }
 
             if isRefreshing {
                 items = response.news
             } else {
                 let existingNEws = Set(items.map(\.id))
-                let filteredNews = response.news.filter { !existingNEws.contains($0.id) }
-                items += filteredNews
+                items += response.news.filter { !existingNEws.contains($0.id) }
             }
 
             hasMore = !response.news.isEmpty && items.count < response.totalCount
             page += 1
-
-            onStateChange?(.loaded)
+            state = .loaded
         } catch {
-            onStateChange?(.error(error.localizedDescription))
+            guard !Task.isCancelled else { return }
+            state = .error(error.localizedDescription)
         }
+
+        loadTask = nil
     }
 }
-

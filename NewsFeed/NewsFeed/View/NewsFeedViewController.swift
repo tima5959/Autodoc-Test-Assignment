@@ -5,6 +5,7 @@
 //  Created by Timur  on 06.10.2026.
 //
 
+import Combine
 import UIKit
 import News
 
@@ -32,6 +33,8 @@ final public class NewsFeedViewController: UIViewController {
 
         return cell
     }
+
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: - UI Components
 
@@ -68,24 +71,35 @@ final public class NewsFeedViewController: UIViewController {
     // MARK: - Private methods
 
     private func configureState() {
-        viewModel.onStateChange = { [weak self] state in
-            guard let self else { return }
+        viewModel.$items
+            .sink { [weak self] items in
+                guard let self else { return }
 
-            switch state {
-            case .loaded:
-                if self.baseView.refreshControl.isRefreshing {
-                    self.baseView.refreshControl.endRefreshing()
-                }
                 self.applySnapshot()
-            case .loading:
-                break
-            case .error(let error):
-                // TODO: Придумать что делать в таком случае. За время теста не замечено ни одного случая
-                print("In \(#file) \(#function) get error: ", error)
-                if self.baseView.refreshControl.isRefreshing {
-                    self.baseView.refreshControl.endRefreshing()
-                }
             }
+            .store(in: &cancellables)
+
+        viewModel.$state
+            .removeDuplicates()
+            .sink { [weak self] state in
+                guard let self else { return }
+
+                self.configureUI(state)
+            }
+            .store(in: &cancellables)
+    }
+
+    private func configureUI(_ state: NewsFeedViewModel.State) {
+        switch state {
+        case .loaded:
+            self.endRefreshIfNeeded()
+            self.applySnapshot()
+        case .loading:
+            break
+        case .error(let error):
+            // TODO: Придумать что делать в таком случае. За время теста не замечено ни одного случая
+            print("In \(#file) \(#function) get error: ", error)
+            self.endRefreshIfNeeded()
         }
     }
 
@@ -94,6 +108,12 @@ final public class NewsFeedViewController: UIViewController {
         snapshot.appendSections([0])
         snapshot.appendItems(viewModel.items)
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+
+    private func endRefreshIfNeeded() {
+        if self.baseView.refreshControl.isRefreshing {
+            self.baseView.refreshControl.endRefreshing()
+        }
     }
 
     @objc private func refresh() {

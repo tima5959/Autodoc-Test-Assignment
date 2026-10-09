@@ -39,19 +39,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		395D8D8D30755EEB0038FAB9 /* News.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = News.xcodeproj; path = News/News.xcodeproj; sourceTree = "<group>"; };
+		395D8D8D30755EEB0038FAB9 /* News.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = News.xcodeproj; path = ../News/News.xcodeproj; sourceTree = "<group>"; };
 		395D8D9330755EFB0038FAB9 /* News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		395D8DBA3077967C0038FAB9 /* Common.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Common.xcodeproj; path = Common/Common.xcodeproj; sourceTree = "<group>"; };
 		395D8DC9307797710038FAB9 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		395D8DE93078473D0038FAB9 /* DesignSystem.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DesignSystem.xcodeproj; path = DesignSystem/DesignSystem.xcodeproj; sourceTree = "<group>"; };
 		395D8DF9307847A30038FAB9 /* DesignSystem.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DesignSystem.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		395D8ED83078575D0038FAB9 /* NewsFeedDetailInfo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NewsFeedDetailInfo.xcodeproj; path = ../NewsFeedDetailInfo/NewsFeedDetailInfo.xcodeproj; sourceTree = "<group>"; };
 		398FB5CF3075481200CAA6C1 /* Autodoc Test Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Autodoc Test Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		398FB5E7307549C900CAA6C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		398FB5E8307549C900CAA6C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		398FB5E9307549C900CAA6C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		398FB5EA307549C900CAA6C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		398FB5EC307549C900CAA6C1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		398FB60730754AA100CAA6C1 /* NewsFeed.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NewsFeed.xcodeproj; path = NewsFeed/NewsFeed.xcodeproj; sourceTree = "<group>"; };
+		398FB60730754AA100CAA6C1 /* NewsFeed.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NewsFeed.xcodeproj; path = ../NewsFeed/NewsFeed.xcodeproj; sourceTree = "<group>"; };
 		398FB61730754ADF00CAA6C1 /* NewsFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NewsFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		398FB67530755DF000CAA6C1 /* NewsService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NewsService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -71,7 +72,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		395D8D7430755EAB0038FAB9 /* Products */ = {
+		395D8E923078570D0038FAB9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		395D8EE4307857930038FAB9 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				398FB60730754AA100CAA6C1 /* NewsFeed.xcodeproj */,
+				395D8ED83078575D0038FAB9 /* NewsFeedDetailInfo.xcodeproj */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		395D8EEC307857B50038FAB9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				395D8D8D30755EEB0038FAB9 /* News.xcodeproj */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		395D8EED307857BC0038FAB9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -82,10 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				398FB5ED307549C900CAA6C1 /* Autodoc Test Assignment */,
-				398FB60730754AA100CAA6C1 /* NewsFeed.xcodeproj */,
-				395D8D8D30755EEB0038FAB9 /* News.xcodeproj */,
-				395D8DE93078473D0038FAB9 /* DesignSystem.xcodeproj */,
+				395D8EE4307857930038FAB9 /* Scenes */,
+				395D8EEC307857B50038FAB9 /* Services */,
 				395D8DBA3077967C0038FAB9 /* Common.xcodeproj */,
+				395D8DE93078473D0038FAB9 /* DesignSystem.xcodeproj */,
 				398FB61630754ADF00CAA6C1 /* Frameworks */,
 				398FB5D03075481200CAA6C1 /* Products */,
 			);
@@ -175,8 +200,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 395D8D7430755EAB0038FAB9 /* Products */;
-					ProjectRef = 398FB60730754AA100CAA6C1 /* NewsFeed.xcodeproj */;
+					ProductGroup = 395D8E923078570D0038FAB9 /* Products */;
+					ProjectRef = 395D8DE93078473D0038FAB9 /* DesignSystem.xcodeproj */;
+				},
+				{
+					ProductGroup = 395D8EED307857BC0038FAB9 /* Products */;
+					ProjectRef = 395D8D8D30755EEB0038FAB9 /* News.xcodeproj */;
 				},
 			);
 			projectRoot = "";
